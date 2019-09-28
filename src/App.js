@@ -50,17 +50,10 @@ class App extends Component {
     if (this.state.showTodos) {
         todos = (
           <div>
-            <ToDo  
-                title={this.state.todos[0].title} 
-                user={this.state.todos[0].user}
-                date={this.state.todos[0].date} />
-            <ToDo 
-                title={this.state.todos[1].title} 
-                user={this.state.todos[1].user}
-                date={this.state.todos[1].date}
-                click={this.changeTaskHandler.bind(this, 'Go to sleep')}
-                changed={this.changeUserHandler}/>
-        </div>
+            {this.state.todos.map(todo => {
+                return <ToDo title={todo.title} user={todo.user} date={todo.date}/>
+            })}
+          </div>
         )
     }
   
