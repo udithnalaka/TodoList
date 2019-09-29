@@ -7,7 +7,7 @@ const ToDo = (props) => {
             <p>Todo task : {props.title}</p>
             <p>User: {props.user}</p>
             <p onClick={props.click}>When : {props.date}</p>
-            <input type="text" onChange={props.changed} value={props.user}></input>
+            <input type="text" onChange={props.changed}></input>
         </div>
     );
 };

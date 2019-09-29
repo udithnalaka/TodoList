@@ -7,8 +7,8 @@ class App extends Component {
 
   state = {
     todos : [
-      { title: "Go to City", user: "Udith", date: "27/09/2019"},
-      { title: "Go Jogging", user: "Nalaka", date: "Daily @ 5pm"}
+      { id: 1, title: "Go to City", user: "Udith", date: "27/09/2019"},
+      { id: 2, title: "Go Jogging", user: "Nalaka", date: "Daily @ 5pm"}
     ],
     user : "Udith Nalaka",
     showTodos : false
@@ -18,19 +18,27 @@ class App extends Component {
     //console.log("Clicked");
 
     this.setState({todos : [
-        { title: newTtile, user: "Udith", date: "28/09/2019"},
-        { title: "Go Jogging", user: "Udith", date: "Daily @ 5pm"}       
+        { id:1, title: newTtile, user: "Udith", date: "28/09/2019"},
+        { id:2, title: "Go Jogging", user: "Udith", date: "Daily @ 5pm"}       
       ]
     })
   }
 
-  changeUserHandler = (event) => {
+  changeUserHandler = (event, id) => {
 
-    this.setState({todos : [
-      { title: "Go to City", user: "Udith", date: "28/09/2019"},
-      { title: "Go Jogging", user: event.target.value, date: "Daily @ 5pm"}       
-    ]
-  })
+    const todoIndex = this.state.todos.findIndex(t => {
+      return t.id === id;
+    });
+
+    const todoTask = {...this.state.todos[todoIndex]};
+
+    todoTask.name = event.target.value;
+
+    const todos = [...this.state.todos];
+    todos[todoIndex] = todoTask;
+
+    this.setState({todos: todos});
+    
   }
 
   toggleToDoHandler = () => {
@@ -42,6 +50,13 @@ class App extends Component {
     
   }
 
+  deleteTodoHandler = (todoIndex) => {
+     //const todos = this.state.todos.slice(); // this will copy the original todos array.
+     const todos = [...this.state.todos]; //slice operator. behaviour is similar to obove line.
+     todos.splice(todoIndex, 1);
+     this.setState({todos: todos});
+  }
+
   
   render () {
 
@@ -50,8 +65,14 @@ class App extends Component {
     if (this.state.showTodos) {
         todos = (
           <div>
-            {this.state.todos.map(todo => {
-                return <ToDo title={todo.title} user={todo.user} date={todo.date}/>
+            {this.state.todos.map((todo, index) => {
+                return <ToDo
+                key={todo.id}
+                title={todo.title} 
+                user={todo.user} 
+                date={todo.date}
+                click={this.deleteTodoHandler.bind(this,index)}
+                changed={(event) => this.changeUserHandler(event, todo.id)} />
             })}
           </div>
         )
