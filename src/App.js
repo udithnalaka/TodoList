@@ -5,6 +5,8 @@ import ToDo from './Todo/Todo';
 
 import InputValidation from './InputValidation/InputValidation';
 
+import Char from './Char/Char';
+
 class App extends Component {
 
   state = {
@@ -84,6 +86,10 @@ class App extends Component {
           </div>
         )
     }
+
+    const char = this.state.textValue.split('').map(char => {
+      return <Char character={char} />
+    });
   
     return (
       <div className="App">
@@ -100,6 +106,8 @@ class App extends Component {
         <input type="text" onChange={this.displayTextChangeHandler}></input>
         <p>User enetered : {this.state.textValue}</p>
         <InputValidation textLength={this.state.textValue.length}/>
+        
+        {char}
 
       </div>
     ); 
