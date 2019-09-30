@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Validation.css';
+
 const inputValidation = (props) => {
 
     let validationMessage = "Input too short";
@@ -9,7 +11,7 @@ const inputValidation = (props) => {
     }
 
     return (
-        <div>
+        <div className="Validation">
             <p>{validationMessage}</p>
         </div>
     );
