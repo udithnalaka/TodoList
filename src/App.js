@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import './App.css';
 import ToDo from './Todo/Todo';
 
+import InputValidation from './InputValidation/InputValidation';
+
 class App extends Component {
 
   state = {
@@ -11,7 +13,8 @@ class App extends Component {
       { id: 2, title: "Go Jogging", user: "Nalaka", date: "Daily @ 5pm"}
     ],
     user : "Udith Nalaka",
-    showTodos : false
+    showTodos : false,
+    textValue : ""
   }
 
   changeTaskHandler = (newTtile) => {
@@ -57,6 +60,10 @@ class App extends Component {
      this.setState({todos: todos});
   }
 
+  displayTextChangeHandler = (event) => {
+    this.setState({textValue : event.target.value})
+  }
+
   
   render () {
 
@@ -83,11 +90,17 @@ class App extends Component {
         <h1>React App</h1>
         <p>Logged user : {this.state.user}</p>
 
-       {todos}
+        {todos}
 
         <button onClick={this.changeTaskHandler.bind(this, null)}>Switch Todo</button>
-
         <button onClick={this.toggleToDoHandler}>Toggle ToDo List</button>
+
+
+        <br/><br/>
+        <input type="text" onChange={this.displayTextChangeHandler}></input>
+        <p>User enetered : {this.state.textValue}</p>
+        <InputValidation textLength={this.state.textValue.length}/>
+
       </div>
     ); 
   }
