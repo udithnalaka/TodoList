@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Radium, {StyleRoot} from 'radium';
 
 import './App.css';
 import ToDo from './Todo/Todo';
@@ -18,6 +19,8 @@ class App extends Component {
     showTodos : false,
     textValue : ""
   }
+
+  
 
   changeTaskHandler = (newTtile) => {
     //console.log("Clicked");
@@ -68,6 +71,19 @@ class App extends Component {
 
   
   render () {
+    
+    const style = {
+        backgroundColor: 'blue',
+        color: 'white',
+        font: 'inherit',
+        border: '1px solid black',
+        padding: '8px',
+        cursor: 'pointer',
+        ':hover': {
+          backgroundColor: 'red',
+          color: 'black'
+        }
+    };
 
     let todos = null;
 
@@ -92,27 +108,29 @@ class App extends Component {
     });
   
     return (
-      <div className="App">
-        <h1>React App</h1>
-        <p>Logged user : {this.state.user}</p>
 
-        {todos}
+      <StyleRoot>
+        <div className="App">
+          <h1>React App</h1>
+          <p>Logged user : {this.state.user}</p>
 
-        <button onClick={this.changeTaskHandler.bind(this, null)}>Switch Todo</button>
-        <button onClick={this.toggleToDoHandler}>Toggle ToDo List</button>
+          {todos}
+
+          <button className = "ToggleButton" onClick={this.changeTaskHandler.bind(this, null)}>Switch Todo</button>
+          <button style={style} onClick={this.toggleToDoHandler}>Toggle ToDo List</button>
 
 
-        <br/><br/>
-        <input type="text" onChange={this.displayTextChangeHandler}></input>
-        <p>User enetered : {this.state.textValue}</p>
-        <InputValidation textLength={this.state.textValue.length}/>
-        
-        {char}
-
-      </div>
+          <br/><br/>
+          <input type="text" onChange={this.displayTextChangeHandler}></input>
+          <p>User enetered : {this.state.textValue}</p>
+          <InputValidation textLength={this.state.textValue.length}/>
+          
+          {char}
+        </div>
+      </StyleRoot>
     ); 
   }
 
 }
 
-export default App;
+export default Radium(App);
