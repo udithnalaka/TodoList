@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Radium, {StyleRoot} from 'radium';
 
 import './App.css';
 import ToDo from './Todo/Todo';
@@ -79,7 +78,7 @@ class App extends Component {
         border: '1px solid black',
         padding: '8px',
         cursor: 'pointer',
-        ':hover': {
+        ':hover': { //this is a scudo selector. need radium 3rd party lib to work
           backgroundColor: 'red',
           color: 'black'
         }
@@ -109,7 +108,6 @@ class App extends Component {
   
     return (
 
-      <StyleRoot>
         <div className="App">
           <h1>React App</h1>
           <p>Logged user : {this.state.user}</p>
@@ -127,10 +125,9 @@ class App extends Component {
           
           {char}
         </div>
-      </StyleRoot>
     ); 
   }
 
 }
 
-export default Radium(App);
+export default App;

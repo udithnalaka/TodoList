@@ -1,18 +1,11 @@
 import React from 'react';
-import Radium from 'radium';
 
 import './Todo.css';
 
 const ToDo = (props) => {
 
-    const style = {
-        '@media screen and (min-width: 500px)':{
-            width: '450px'
-        }
-    };
-
     return (
-        <div className = "Todo" style={style}>
+        <div className = "Todo">
             <p>Todo task : {props.title}</p>
             <p>User: {props.user}</p>
             <p onClick={props.click}>When : {props.date}</p>
@@ -21,4 +14,4 @@ const ToDo = (props) => {
     );
 };
 
-export default Radium(ToDo);
+export default ToDo;
