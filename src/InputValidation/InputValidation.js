@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Validation.css';
+import classes from './Validation.css';
 
 const inputValidation = (props) => {
 
@@ -11,7 +11,7 @@ const inputValidation = (props) => {
     }
 
     return (
-        <div className="Validation">
+        <div className={classes.Validation}>
             <p>{validationMessage}</p>
         </div>
     );

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import './Todo.css';
+import classes from './Todo.css';
 
 const ToDo = (props) => {
 
     return (
-        <div className = "Todo">
+        <div className = {classes.Todo}>
             <p>Todo task : {props.title}</p>
             <p>User: {props.user}</p>
             <p onClick={props.click}>When : {props.date}</p>

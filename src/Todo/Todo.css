@@ -5,3 +5,10 @@
     box-shadow: 0 4px 6px #ccc;
     padding: 16px;
 }
+
+@media screen and (min-width: 500px) {
+    .Todo {
+        width: 400px;
+        border: 2px solid rebeccapurple;
+    }
+}

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import './Char.css';
+import classes from './Char.css';
 
 const char = (props) => {
 
     return(
-        <div className="Char">
+        <div className={classes.Char}>
             {props.character}
         </div>
     );

@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 
-import './App.css';
+import classes from './App.css';
 import ToDo from './Todo/Todo';
 
 import InputValidation from './InputValidation/InputValidation';
 
 import Char from './Char/Char';
+
+import ErrorBoundry from './ErrorBoundry/ErrorBoundry';
 
 class App extends Component {
 
@@ -70,33 +72,30 @@ class App extends Component {
 
   
   render () {
-    
-    const style = {
-        backgroundColor: 'blue',
-        color: 'white',
-        font: 'inherit',
-        border: '1px solid black',
-        padding: '8px',
-        cursor: 'pointer',
-        ':hover': { //this is a scudo selector. need radium 3rd party lib to work
-          backgroundColor: 'red',
-          color: 'black'
-        }
-    };
 
+    //geenrating a random error for error handling purpose
+    // const random = Math.random();
+    // if (random >0.7) {
+    //   throw new Error('Throw Error');
+    // }
+    
     let todos = null;
 
     if (this.state.showTodos) {
         todos = (
           <div>
             {this.state.todos.map((todo, index) => {
-                return <ToDo
-                key={todo.id}
-                title={todo.title} 
-                user={todo.user} 
-                date={todo.date}
-                click={this.deleteTodoHandler.bind(this,index)}
-                changed={(event) => this.changeUserHandler(event, todo.id)} />
+                return ( 
+                // ErrorBoundry is called a higher end component, because it wraps other components.
+                //<ErrorBoundry key={todo.id}> 
+                  <ToDo
+                    title={todo.title} 
+                    user={todo.user} 
+                    date={todo.date}
+                    click={this.deleteTodoHandler.bind(this,index)}
+                    changed={(event) => this.changeUserHandler(event, todo.id)} />
+                //</ErrorBoundry>
+                )
             })}
           </div>
         )
@@ -108,14 +107,14 @@ class App extends Component {
   
     return (
 
-        <div className="App">
+        <div className={classes.App}>
           <h1>React App</h1>
           <p>Logged user : {this.state.user}</p>
 
           {todos}
 
-          <button className = "ToggleButton" onClick={this.changeTaskHandler.bind(this, null)}>Switch Todo</button>
-          <button style={style} onClick={this.toggleToDoHandler}>Toggle ToDo List</button>
+          <button className = {classes.ToggleButton} onClick={this.changeTaskHandler.bind(this, null)}>Switch Todo</button>
+          <button className = {classes.App.Red} onClick={this.toggleToDoHandler}>Toggle ToDo List</button>
 
 
           <br/><br/>

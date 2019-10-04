@@ -15,3 +15,16 @@
   background-color: red;
 }
 
+.App button {
+  background-color: blue;
+  color: white;
+  font: inherit;
+  border: 1px solid black;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.App button:hover {
+  background-color: red;
+}
+
